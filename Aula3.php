@@ -13,8 +13,8 @@
             </center>
     </head>
 
-    <body bgcolor="grey">
-
+    <div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
+    
         <center>
         <form action="" method="POST">
 
