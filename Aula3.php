@@ -81,7 +81,7 @@ if (isset($_POST['Nome']) && isset($_POST['Sobrenome']) && isset($_POST['Email']
             Echo "<H2 style='color:Green;'>Seja bem vindo !</h2>";
 
         }}
-        Echo "</center>"
+        Echo "</center>";
 
 
 ?>

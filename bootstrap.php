@@ -17,8 +17,9 @@
 
 
   <nav class="navbar bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" style="color:white;">Página principal</a>
+  <div class="container-fluid">  
+    <a href="bootstrap.php" class="navbar-brand" style="color:white;">Página principal</a>
+    <a href="funcionarios.php" class="navbar-brand" style="color:white;">Funcionários </a>
     <form class="d-flex" role="search">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
