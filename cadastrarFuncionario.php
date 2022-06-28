@@ -26,26 +26,47 @@
     </form>
   </div>
 </nav>
-<center>
-<form action="" method="POST">
+        <center>
+<form class="form-control" action="" method="POST">
                 <label>Nome: </label><BR>
-                <input type="text" name="nome" required><br>
+                <input class="form-control" type="text" name="nome" required><br>
 
                 <Label>Sobrenome: </label><br>
-                <Input type="text" name="sobrenome" required><br>
+                <Input class="form-control" type="text" name="sobrenome" required><br>
 
                 <label>Cargo: </label><br>
-                <input type="number" name="cargo" required><br>
+                <input class="form-control" type="text" name="cargo" required><br>
                 
                 <label>Salário: </label><br>
-                <input type="date" name="salario" required><br>
+                <input class="form-control" type="number" name="salario" required><br>
 
                 
-                <br><button type="submit">Salvar/Gravar</button><br>
+                <br><button type="Button" class="btn btn-success">
+                  Salvar
 
-</form>
-</center>
-</body>
+                </button><br>
+
+    </form>
+        </center>
+<?php
+
+$nomeServidor = "localhost";
+$database = "database";
+$usuario = "root";
+$senha = "";
+
+//criar conexão
+$conexao = mysqli_connect($nomeServidor, $usuario, $senha, $database);
+//checagem de conexão
+if(!$conexao){
+  die("Conexão Falhou: ".mysqli_connect_error());
+}else{
+  echo"conexão com sucesso!";
+}
+
+?>
+
+    </body>
 
 
 </html>
