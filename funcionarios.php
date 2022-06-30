@@ -27,7 +27,35 @@
   </div>
 </nav>
 <center>
-    
+ <?php 
+function conexao(){
+
+$nomeServidor = "localhost";
+$database = "database";
+$usuario = "root";
+$senha = "";
+
+//criar conexão
+$conexao = mysqli_connect($nomeServidor, $usuario, $senha, $database);
+//checagem de conexão
+if(!$conexao){
+  die("Conexão Falhou: ".mysqli_connect_error());
+}else{
+  echo"conexão com sucesso!";
+}
+return $conexao; 
+              }
+
+      function selectFuncionarios(){
+$conexao = conexao();
+//executar o comando desejado;
+$comando = "SELECT * FROM FUNCIONARIOS";
+$resultado_comando = mysqli_query($conexao, $comando) or die('Erro no envio do comando: '.$comando." ".mysqli_error($conexao));
+//exibir os dados da tabela
+    return $resultado_comando;
+      }
+      $funcionarios = selectFuncionarios();
+?>
     <table class="table table-dark table-hover">
     <thead>
     <tr>
@@ -36,21 +64,31 @@
       <th scope="col">sobrenome</th>
       <th scope="col">Cargo</th>
       <th scope="col">Salário</th>
-      <th scope="col">Descrição</th>
-      <th scope="col">Ação</th>
+
 
 
     </tr>
   </thead>
   <tbody>
+    <?php
+  while($indice = mysqli_fetch_array($funcionarios)){
+    print_r($indice);
+    echo "<tr>";
+    echo "<td>".$indice['id']."</td>";  
+    echo "<td>".$indice['nome']."</td>";  
+    echo "<td>".$indice['sobrenome']."</td>";  
+    echo "<td>".$indice['cargo']."</td>";  
+    echo "<td>".$indice['salario']."</td>";    
+    echo "</tr>";
+  }
+  ?>
   <tr>
   <td>...</td>
   <td>...</td>
   <td>...</td>
   <td>...</td>
   <td>...</td>
-  <td>...</td>
-  <td>...</td>
+
 
   </tr>
     </table>

@@ -50,20 +50,35 @@
         </center>
 <?php
 
-$nomeServidor = "localhost";
-$database = "database";
-$usuario = "root";
-$senha = "";
+          function conexao(){
 
-//criar conexão
-$conexao = mysqli_connect($nomeServidor, $usuario, $senha, $database);
-//checagem de conexão
-if(!$conexao){
-  die("Conexão Falhou: ".mysqli_connect_error());
-}else{
-  echo"conexão com sucesso!";
-}
+  $nomeServidor = "localhost";
+  $database = "database";
+  $usuario = "root";
+  $senha = "";
+  
+  //criar conexão
+  $conexao = mysqli_connect($nomeServidor, $usuario, $senha, $database);
+  //checagem de conexão
+  if(!$conexao){
+    die("Conexão Falhou: ".mysqli_connect_error());
+  }else{
+    echo"conexão com sucesso!";
+  }
+  return $conexao; 
+                }
 
+        function selectFuncionarios(){
+  $conexao = conexao();
+  //executar o comando desejado;
+$comando = "SELECT * FROM FUNCIONARIOS";
+$resultado_comando = mysqli_query($conexao, $comando) or die('Erro no envio do comando: '.$comando." ".mysqli_error($conexao));
+//exibir os dados da tabela
+      while($indice = mysqli_fetch_array($resultado_comando)){
+        print_r($indice);
+      }
+    }
+selectFuncionarios();
 ?>
 
     </body>
