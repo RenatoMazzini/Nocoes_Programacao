@@ -41,7 +41,7 @@
                 <input class="form-control" type="number" name="salario" required><br>
 
                 
-                <br><button type="Button" class="btn btn-success">
+                <br><button type="submit" class="btn btn-success">
                   Salvar
 
                 </button><br>
@@ -50,7 +50,7 @@
         </center>
 <?php
 
-          function conexao(){
+function conexao(){
 
   $nomeServidor = "localhost";
   $database = "database";
@@ -67,19 +67,25 @@
   }
   return $conexao; 
                 }
+                
+                function inserir($nome, $sobrenome, $cargo, $salario){
+$conexao = conexao();
+$comando = "INSERT INTO funcionarios(nome,sobrenome,cargo,salario) VALUES ('$nome','$sobrenome','$cargo',$salario)";
 
-        function selectFuncionarios(){
-  $conexao = conexao();
-  //executar o comando desejado;
-$comando = "SELECT * FROM FUNCIONARIOS";
-$resultado_comando = mysqli_query($conexao, $comando) or die('Erro no envio do comando: '.$comando." ".mysqli_error($conexao));
-//exibir os dados da tabela
-      while($indice = mysqli_fetch_array($resultado_comando)){
-        print_r($indice);
-      }
-    }
-selectFuncionarios();
+if(mysqli_query($conexao, $comando)){
+  echo "Registro do funcionario efetuado com sucesso";
+}else{
+  echo "Erro: ".$comando."<br>".mysqli_error($conexao);
+
+}
+}
+                if(isset($_POST['nome'])){
+                  print_r($_POST);
+                  inserir($_POST['nome'], $_POST['sobrenome'], $_POST['cargo'], $_POST['salario']);
+                }
+
 ?>
+
 
     </body>
 

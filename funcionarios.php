@@ -41,7 +41,7 @@ $conexao = mysqli_connect($nomeServidor, $usuario, $senha, $database);
 if(!$conexao){
   die("Conexão Falhou: ".mysqli_connect_error());
 }else{
-  echo"conexão com sucesso!";
+  //echo"conexão com sucesso!";
 }
 return $conexao; 
               }
@@ -59,11 +59,12 @@ $resultado_comando = mysqli_query($conexao, $comando) or die('Erro no envio do c
     <table class="table table-dark table-hover">
     <thead>
     <tr>
-    <th scope="col">#</th>
+    <th scope="col">Id</th>
       <th scope="col">Nome</th>
       <th scope="col">sobrenome</th>
       <th scope="col">Cargo</th>
       <th scope="col">Salário</th>
+      <th scope="col">Ação</th>
 
 
 
@@ -72,25 +73,18 @@ $resultado_comando = mysqli_query($conexao, $comando) or die('Erro no envio do c
   <tbody>
     <?php
   while($indice = mysqli_fetch_array($funcionarios)){
-    print_r($indice);
+    //print_r($indice);
     echo "<tr>";
     echo "<td>".$indice['id']."</td>";  
     echo "<td>".$indice['nome']."</td>";  
     echo "<td>".$indice['sobrenome']."</td>";  
     echo "<td>".$indice['cargo']."</td>";  
     echo "<td>".$indice['salario']."</td>";    
+    echo "<td><button type='button' class='btn btn-info'>Editar</button>";
+    echo "<button type='button' class='btn btn-danger'>Remover</button></td>";
     echo "</tr>";
   }
   ?>
-  <tr>
-  <td>...</td>
-  <td>...</td>
-  <td>...</td>
-  <td>...</td>
-  <td>...</td>
-
-
-  </tr>
     </table>
     
     <a href="cadastrarFuncionario.php"  type="button" class="btn btn-success">Cadastrar Novo Usuário</button></a>
