@@ -54,6 +54,15 @@ $resultado_comando = mysqli_query($conexao, $comando) or die('Erro no envio do c
 //exibir os dados da tabela
     return $resultado_comando;
       }
+      function deletar($id){
+        $conexao = conexao();
+        $comando = "DELETE FROM FUNCIONARIOS WHERE ID = $id";
+        if(mysqli_query($conexao, $comando)){
+          echo "Registro do funcionario apagado com sucesso!";
+        }else{
+          echo "Deu erro, funcionario não foi apagado!";
+        }
+       }
       $funcionarios = selectFuncionarios();
 ?>
     <table class="table table-dark table-hover">
@@ -72,17 +81,27 @@ $resultado_comando = mysqli_query($conexao, $comando) or die('Erro no envio do c
   </thead>
   <tbody>
     <?php
-  while($indice = mysqli_fetch_array($funcionarios)){
-    //print_r($indice);
-    echo "<tr>";
-    echo "<td>".$indice['id']."</td>";  
-    echo "<td>".$indice['nome']."</td>";  
-    echo "<td>".$indice['sobrenome']."</td>";  
-    echo "<td>".$indice['cargo']."</td>";  
-    echo "<td>".$indice['salario']."</td>";    
-    echo "<td><button type='button' class='btn btn-info'>Editar</button>";
-    echo "<button type='button' class='btn btn-danger'>Remover</button></td>";
-    echo "</tr>";
+    if(isset($_GET['id'])){
+       deletar($_GET['id']);
+    }
+
+        while($indice = mysqli_fetch_array($funcionarios)){
+//print_r($indice);
+          echo "<tr>";
+          echo "<td>".$indice['id']."</td>";  
+          echo "<td>".$indice['nome']."</td>";  
+          echo "<td>".$indice['sobrenome']."</td>";  
+          echo "<td>".$indice['cargo']."</td>";  
+          echo "<td>".$indice['salario']."</td>";    
+          echo "<td>";
+            echo "<form action ='editarFuncionarios.php?id=$indice[id]' method='POST'>";
+             echo "<button type='button' class='btn btn-info'>Editar</button>";
+             echo "</form>";
+              echo "<form action='funcionarios.php?id=$indice[id]' method='POST'>";
+              echo "<button type='submit' class='btn btn-danger'>Remover</button>";
+          echo "</form>";
+          echo "</td>";
+          echo "</tr>";
   }
   ?>
     </table>
