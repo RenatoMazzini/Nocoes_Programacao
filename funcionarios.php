@@ -70,7 +70,7 @@ $resultado_comando = mysqli_query($conexao, $comando) or die('Erro no envio do c
     <tr>
     <th scope="col">Id</th>
       <th scope="col">Nome</th>
-      <th scope="col">sobrenome</th>
+      <th scope="col">descrição</th>
       <th scope="col">Cargo</th>
       <th scope="col">Salário</th>
       <th scope="col">Ação</th>
@@ -90,12 +90,12 @@ $resultado_comando = mysqli_query($conexao, $comando) or die('Erro no envio do c
           echo "<tr>";
           echo "<td>".$indice['id']."</td>";  
           echo "<td>".$indice['nome']."</td>";  
-          echo "<td>".$indice['sobrenome']."</td>";  
+          echo "<td>".$indice['descricao']."</td>";  
           echo "<td>".$indice['cargo']."</td>";  
           echo "<td>".$indice['salario']."</td>";    
           echo "<td>";
             echo "<form action ='editarFuncionarios.php?id=$indice[id]' method='POST'>";
-             echo "<button type='button' class='btn btn-info'>Editar</button>";
+             echo "<button type='submit' class='btn btn-info'>Editar</button>";
              echo "</form>";
               echo "<form action='funcionarios.php?id=$indice[id]' method='POST'>";
               echo "<button type='submit' class='btn btn-danger'>Remover</button>";
